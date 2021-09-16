@@ -6,7 +6,7 @@ const Form = ({ value, loading, error, buttonAction, changeUser }) => (
       type="text"
       className="userInput"
       value={value}
-      placeholder="Buscar usuário"
+      placeholder="Digite o CNPJ"
       onChange={(e) => changeUser(e.target.value)}
     />
     <button className="searchButton" onClick={buttonAction}>
