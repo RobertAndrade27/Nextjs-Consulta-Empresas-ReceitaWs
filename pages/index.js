@@ -19,12 +19,19 @@ function Home() {
 
   function searchUser() {
     const { value } = state;
-    axios.get(`https://www.receitaws.com.br/v1/cnpj/${value}`).then(
-      (response) => setData(response.data),
-      (error) => {
-        console.log(error);
-      }
-    );
+    axios
+      .get(`https://www.receitaws.com.br/v1/cnpj/${value}`, {
+        Headers: {
+          'Access-Control-Allow-Origin':
+            'https://nextjs-5nrg19--3000.local.webcontainer.io',
+        },
+      })
+      .then(
+        (response) => setData(response.data),
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
   const { value, repos, error, loading, informations } = state;
