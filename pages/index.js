@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import React, { Component, useState, useEffect } from 'react';
-import axios from 'axios';
+import api from './api/api.js';
 import Form from './_form.js';
 
 function Home() {
@@ -19,19 +19,12 @@ function Home() {
 
   function searchUser() {
     const { value } = state;
-    axios
-      .get(`https://www.receitaws.com.br/v1/cnpj/${value}`, {
-        Headers: {
-          'Access-Control-Allow-Origin':
-            'https://nextjs-5nrg19--3000.local.webcontainer.io',
-        },
-      })
-      .then(
-        (response) => setData(response.data),
-        (error) => {
-          console.log(error);
-        }
-      );
+    api.get(`/v1/cnpj/${value}`).then(
+      (response) => setData(response.data),
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   const { value, repos, error, loading, informations } = state;
